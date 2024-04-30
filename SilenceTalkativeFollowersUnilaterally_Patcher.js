@@ -60,11 +60,20 @@ function copyAndPatchIdles(topic, patchPlugin) {
 }
 
 function createCondition(topicInfo) {
+  // Dialogue is not currently running...
   let condition = xelib.AddArrayItem(topicInfo, 'Conditions');
-  xelib.SetValue(condition, 'CTDA\\Type', '10000000'); // equals, AND
+  xelib.SetValue(condition, 'CTDA\\Type', '10010000'); // equals, AND
   xelib.SetValue(condition, 'CTDA\\Function', 'GetGlobalValue');
   xelib.SetValue(condition, 'CTDA\\Comparison Value', '0.0');
   xelib.SetValue(condition, 'CTDA\\Parameter #1', 'FK_GLOB_DialogueIsOngoing');
   xelib.SetValue(condition, 'CTDA\\Run On', 'Subject');
   xelib.MoveArrayItem(condition, 0);
+  // A nearby scene is not currently running...
+  condition = xelib.AddArrayItem(topicInfo, 'Conditions');
+  xelib.SetValue(condition, 'CTDA\\Type', '10000000'); // equals, AND
+  xelib.SetValue(condition, 'CTDA\\Function', 'GetGlobalValue');
+  xelib.SetValue(condition, 'CTDA\\Comparison Value', '0.0');
+  xelib.SetValue(condition, 'CTDA\\Parameter #1', 'FK_GLOB_SceneIsOngoing');
+  xelib.SetValue(condition, 'CTDA\\Run On', 'Subject');
+  xelib.MoveArrayItem(condition, 1);
 }
