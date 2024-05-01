@@ -62,7 +62,7 @@ function copyAndPatchIdles(topic, patchPlugin) {
 function createCondition(topicInfo) {
   // Dialogue is not currently running...
   let condition = xelib.AddArrayItem(topicInfo, 'Conditions');
-  xelib.SetValue(condition, 'CTDA\\Type', '10010000'); // equals, AND
+  xelib.SetValue(condition, 'CTDA\\Type', '10000000'); // equals, AND
   xelib.SetValue(condition, 'CTDA\\Function', 'GetGlobalValue');
   xelib.SetValue(condition, 'CTDA\\Comparison Value', '0.0');
   xelib.SetValue(condition, 'CTDA\\Parameter #1', 'FK_GLOB_DialogueIsOngoing');
